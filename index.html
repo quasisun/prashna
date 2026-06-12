@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Прашна Джйотиш — классическая прашна и Чандра чакра</title>
+<style>
+  :root {
+    --bg: #ece6da; --card: #f6f1e8; --card2: #efe8d9; --line: #d9cfbd;
+    --text: #9c4f38; --muted: #b08163; --accent: #a4421f; --accent2: #8a3b24;
+    --good: #3f7a4e; --bad: #a83232; --mixed: #a3801f;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text); font: 16px/1.55 Georgia, 'Times New Roman', serif; }
+  .wrap { max-width: 1060px; margin: 0 auto; padding: 24px 16px 80px; }
+  header.top { text-align: center; padding: 18px 0 8px; }
+  header.top h1 { font-size: 30px; margin: 0; color: var(--accent); font-weight: normal; letter-spacing: .5px; }
+  header.top h1::before, header.top h1::after { content: ' ॐ '; color: var(--muted); font-size: 20px; }
+  header.top p { color: var(--muted); margin: 6px 0 0; font-style: italic; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 20px 22px; margin-top: 18px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; }
+  label { display: block; font-size: 13px; color: var(--muted); margin-bottom: 4px; }
+  input, select, textarea {
+    width: 100%; background: var(--card2); color: var(--text); border: 1px solid var(--line);
+    border-radius: 8px; padding: 9px 10px; font: inherit; font-size: 15px;
+  }
+  textarea { resize: vertical; min-height: 44px; }
+  input:focus, select:focus, textarea:focus { outline: none; border-color: var(--accent2); }
+  .btnrow { margin-top: 18px; display: flex; gap: 12px; align-items: center; }
+  button {
+    background: linear-gradient(180deg, var(--accent), var(--accent2)); color: #f8f2e7;
+    font: inherit; font-size: 17px; border: none; border-radius: 10px; padding: 12px 30px; cursor: pointer;
+  }
+  button:hover { filter: brightness(1.08); }
+  button.secondary { background: var(--card2); color: var(--muted); border: 1px solid var(--line); font-size: 14px; padding: 10px 18px; }
+  #report { display: none; }
+  #repHead h2 { color: var(--accent); margin: 4px 0 8px; font-weight: normal; }
+  #repHead .q { font-size: 19px; font-style: italic; margin: 2px 0 10px; }
+  .meta { color: var(--muted); font-size: 14px; margin: 3px 0; }
+  /* южноиндийская карта */
+  .charts-row { display: flex; flex-wrap: wrap; gap: 22px; justify-content: center; margin: 10px 0; }
+  .chart-block { text-align: center; }
+  .chart-title { color: var(--muted); font-size: 14px; margin-bottom: 6px; }
+  .schart { display: grid; grid-template-columns: repeat(4, 105px); grid-template-rows: repeat(4, 105px); width: max-content; margin: 0 auto; border: 2px solid var(--accent2); border-radius: 6px; overflow: hidden; background: var(--card2); }
+  .scell { border: 1px solid var(--line); position: relative; padding: 3px 4px; font-size: 12px; }
+  .scell .sgn { position: absolute; top: 2px; left: 4px; color: var(--muted); font-size: 10px; }
+  .scell .hn { position: absolute; top: 2px; right: 4px; color: #bca888; font-size: 10px; }
+  .scell .lg { position: absolute; bottom: 2px; right: 4px; color: var(--accent); font-size: 11px; }
+  .scell.asc { box-shadow: inset 0 0 0 2px var(--accent2); }
+  .scell.asc::after { content: ''; position: absolute; top: 0; left: 0; border: 9px solid transparent; border-top-color: var(--accent2); border-left-color: var(--accent2); }
+  .scell .pl { margin-top: 14px; display: flex; flex-wrap: wrap; gap: 2px 6px; }
+  .scell .pl .b { color: #3f7a4e; }
+  .scell .pl .m { color: #a83232; }
+  .scell.center { display: flex; align-items: center; justify-content: center; color: var(--accent2); font-size: 15px; border: none; background: var(--card); }
+  /* таблица */
+  .ptable { width: 100%; border-collapse: collapse; margin-top: 14px; font-size: 14px; }
+  .ptable th, .ptable td { border: 1px solid var(--line); padding: 6px 9px; text-align: left; }
+  .ptable th { color: var(--accent); font-weight: normal; background: var(--card2); }
+  .ptable td:first-child { color: var(--accent); }
+  /* факторы */
+  h2 { color: var(--accent); font-weight: normal; }
+  .lead { color: var(--muted); }
+  .fgroup { margin: 14px 0; border-left: 3px solid var(--line); padding: 2px 0 2px 16px; }
+  .fgroup h4 { margin: 4px 0 8px; font-weight: normal; font-size: 17px; }
+  .fgroup ul { margin: 0; padding-left: 18px; }
+  .fgroup li { margin: 6px 0; }
+  .fg-good { border-color: var(--good); } .fg-good h4 { color: var(--good); }
+  .fg-bad { border-color: var(--bad); } .fg-bad h4 { color: var(--bad); }
+  .fg-neutral { border-color: var(--muted); } .fg-neutral h4 { color: var(--muted); }
+  .w { color: #bca888; font-size: 12px; }
+  .verdict { margin: 18px 0 8px; padding: 14px 16px; border-radius: 10px; background: var(--card2); border: 1px solid var(--line); }
+  .verdict.good .vfill { background: var(--good); } .verdict.good b { color: var(--good); }
+  .verdict.bad .vfill { background: var(--bad); } .verdict.bad b { color: var(--bad); }
+  .verdict.mixed .vfill { background: var(--mixed); } .verdict.mixed b { color: var(--mixed); }
+  .vbar { height: 10px; background: #ddd4c1; border-radius: 6px; margin-top: 10px; overflow: hidden; }
+  .vfill { height: 100%; border-radius: 6px; transition: width .6s; }
+  .score { color: var(--muted); font-size: 13px; }
+  .timing { color: var(--mixed); font-size: 15px; }
+  details.method { margin-top: 18px; color: var(--muted); font-size: 14px; }
+  details.method summary { cursor: pointer; color: var(--accent2); }
+  details.method li { margin: 4px 0; }
+  /* колесо Чандра Каланала Чакры */
+  .wheel-wrap { text-align: center; margin: 12px 0; }
+  .wheel-wrap svg { max-width: 480px; width: 100%; height: auto; }
+  .wheel-legend { display: flex; flex-wrap: wrap; gap: 10px 22px; justify-content: center; font-size: 13px; color: var(--muted); margin-top: 8px; }
+  .wheel-legend .sw { display: inline-block; width: 13px; height: 13px; border-radius: 3px; vertical-align: -2px; margin-right: 5px; border: 1px solid var(--line); }
+  @media print {
+    body { background: #fff; }
+    .card { border-color: #999; background: #fff; }
+    #inputCard, .btnrow, details.method { display: none; }
+  }
+  @media (max-width: 760px) {
+    .schart { grid-template-columns: repeat(4, 82px); grid-template-rows: repeat(4, 82px); }
+    .scell { font-size: 10px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <h1>Прашна Джйотиш</h1>
+    <p>хорарная карта по сидерическому зодиаку · классическая прашна и Чандра чакра</p>
+  </header>
+
+  <div class="card" id="inputCard">
+    <div class="grid">
+      <div style="grid-column: 1 / -1;">
+        <label>Вопрос (формулировка — по желанию)</label>
+        <textarea id="qtext" placeholder="Например: «Получу ли я эту работу?»"></textarea>
+      </div>
+      <div>
+        <label>Дата и время вопроса (местное)</label>
+        <input type="datetime-local" id="dt">
+      </div>
+      <div>
+        <label>Смещение UTC, часов (например 3 для Москвы)</label>
+        <input type="number" id="tz" step="0.5" min="-12" max="14">
+      </div>
+      <div>
+        <label>Город (заполнит координаты)</label>
+        <input type="text" id="city" list="cityList" placeholder="Введите или выберите город...">
+        <datalist id="cityList">
+          <option value="Москва"><option value="Санкт-Петербург"><option value="Новосибирск">
+          <option value="Екатеринбург"><option value="Казань"><option value="Краснодар">
+          <option value="Ростов-на-Дону"><option value="Владивосток"><option value="Киев">
+          <option value="Минск"><option value="Алматы"><option value="Ташкент">
+          <option value="Тбилиси"><option value="Ереван"><option value="Рига">
+          <option value="Берлин"><option value="Прага"><option value="Белград">
+          <option value="Стамбул"><option value="Лимасол"><option value="Тель-Авив">
+          <option value="Дубай"><option value="Дели"><option value="Бангкок">
+          <option value="Денпасар (Бали)"><option value="Лондон"><option value="Нью-Йорк">
+        </datalist>
+      </div>
+      <div>
+        <label>Широта, ° (юг — минус)</label>
+        <input type="number" id="lat" step="0.001" min="-66" max="66" placeholder="55.756">
+      </div>
+      <div>
+        <label>Долгота, ° (запад — минус)</label>
+        <input type="number" id="lon" step="0.001" min="-180" max="180" placeholder="37.617">
+      </div>
+      <div>
+        <label>Аянамша</label>
+        <select id="ayan">
+          <option value="lahiri" selected>Лахири (Читрапакша)</option>
+          <option value="kp">Кришнамурти (KP)</option>
+          <option value="raman">Б. В. Раман</option>
+        </select>
+      </div>
+      <div>
+        <label>Тема вопроса</label>
+        <select id="category">
+          <option value="general">Общий вопрос (о себе, о ситуации)</option>
+          <option value="career">Работа, карьера, должность</option>
+          <option value="marriage">Брак, отношения, партнёрство</option>
+          <option value="children">Дети, беременность</option>
+          <option value="health">Здоровье, болезнь, выздоровление</option>
+          <option value="wealth">Деньги, доход, прибыль</option>
+          <option value="property">Недвижимость, дом, транспорт</option>
+          <option value="travel">Поездка, дорога, переезд</option>
+          <option value="foreign">Заграница, эмиграция, дальние земли</option>
+          <option value="lost">Пропажа, возврат утраченного</option>
+          <option value="court">Спор, суд, конкуренция, враги</option>
+          <option value="education">Учёба, знание, экзамен</option>
+          <option value="spiritual">Духовный вопрос, дхарма, учитель</option>
+        </select>
+      </div>
+      <div>
+        <label>Накшатра Луны при рождении вопрошающего (для Чандра чакры, 28 стоянок)</label>
+        <select id="janmaNak">
+          <option value="-1">— не указана —</option>
+          <option value="0">1. Ашвини</option>
+          <option value="1">2. Бхарани</option>
+          <option value="2">3. Криттика</option>
+          <option value="3">4. Рохини</option>
+          <option value="4">5. Мригашира</option>
+          <option value="5">6. Ардра</option>
+          <option value="6">7. Пунарвасу</option>
+          <option value="7">8. Пушья</option>
+          <option value="8">9. Ашлеша</option>
+          <option value="9">10. Магха</option>
+          <option value="10">11. Пурва-Пхалгуни</option>
+          <option value="11">12. Уттара-Пхалгуни</option>
+          <option value="12">13. Хаста</option>
+          <option value="13">14. Читра</option>
+          <option value="14">15. Свати</option>
+          <option value="15">16. Вишакха</option>
+          <option value="16">17. Анурадха</option>
+          <option value="17">18. Джйештха</option>
+          <option value="18">19. Мула</option>
+          <option value="19">20. Пурва-Ашадха</option>
+          <option value="20">21. Уттара-Ашадха</option>
+          <option value="21">22. Абхиджит</option>
+          <option value="22">23. Шравана</option>
+          <option value="23">24. Дхаништха</option>
+          <option value="24">25. Шатабхиша</option>
+          <option value="25">26. Пурва-Бхадрапада</option>
+          <option value="26">27. Уттара-Бхадрапада</option>
+          <option value="27">28. Ревати</option>
+        </select>
+      </div>
+    </div>
+    <div class="btnrow">
+      <button id="calc">Рассчитать прашну</button>
+      <button id="printBtn" class="secondary">Печать / PDF</button>
+    </div>
+  </div>
+
+  <div id="report">
+    <div class="card" id="repHead"></div>
+    <div class="card">
+      <div class="charts-row" id="charts"></div>
+      <div id="ptableWrap" style="overflow-x:auto;"></div>
+    </div>
+    <div class="card" id="classical"></div>
+    <div class="card" id="chandra"></div>
+    <div class="card" id="summary"></div>
+    <div class="card">
+      <details class="method">
+        <summary>Методика и допущения</summary>
+        <ul>
+          <li>Все долготы сидерические; аянамша по выбору (по умолчанию Лахири). Дома — целознаковые (бхава = раши), как принято в прашне.</li>
+          <li>Эфемеридные расчёты: Солнце и Луна по Ж. Меёсу (точность ≈1′), планеты по кеплеровым элементам JPL (точность 1–5′). Раху/Кету — средний узел.</li>
+          <li>Классическая прашна: правила Шатпанчашики Притхуяшаса и Прашна Марги — лагна и её хозяин, Луна, карья-бхава и карьеша, самбандха лагнеши и карьеши, бенефики/малефики в кендрах, сожжение и ретроградность, панчанга дня (вара, титхи, йога, карана), мухуртовый класс накшатр.</li>
+          <li>Чандра чакра прашна — Чандра Каланала Чакра: используется пояс из 28 накшатр (с Абхиджит между Уттара-Ашадхой и Шраваной; Абхиджит занимает 276°40′–280°53′20″). Накшатра транзитной Луны прашны ставится на вершину трезубца (позиция 1), остальные 27 стоянок идут по часовой стрелке. Зоны: зубцы трезубцев (позиции 1, 2, 7, 8, 9, 14, 15, 16, 21, 22, 23, 28) — крайне неблагоприятно; внутри круга (4, 5, 11, 12, 18, 19, 25, 26) — благоприятно; вне круга (3, 6, 10, 13, 17, 20, 24, 27) — средне. Второй метод: если накшатра Луны прашны или накшатра хозяина лагны — 8-я, 15-я или 22-я от накшатры Луны рождения, ответ отрицательный. Результат проявляется в течение 72 часов.</li>
+          <li>Баллы факторов — рабочий ориентир для сведения указаний, а не догма: окончательное суждение остаётся за астрологом.</li>
+          <li>Вара определяется от восхода Солнца: вопрос до восхода относится к предыдущим суткам.</li>
+          <li>Указывайте фактическое смещение UTC на момент вопроса (с учётом летнего времени, если оно действует).</li>
+        </ul>
+      </details>
+    </div>
+  </div>
+</div>
+<script src="astro.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
