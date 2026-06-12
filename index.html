@@ -118,7 +118,10 @@
       </div>
       <div>
         <label>Город (заполнит координаты)</label>
-        <input type="text" id="city" list="cityList" placeholder="Введите или выберите город...">
+        <div style="display:flex;gap:8px;align-items:center;">
+          <input type="text" id="city" list="cityList" placeholder="Введите или выберите город..." style="flex:1;margin:0;">
+          <button type="button" id="geoBtn" class="secondary" style="white-space:nowrap;padding:9px 12px;font-size:13px;" title="Определить по геолокации">📍 Моё место</button>
+        </div>
         <datalist id="cityList">
           <option value="Москва"><option value="Санкт-Петербург"><option value="Новосибирск">
           <option value="Екатеринбург"><option value="Казань"><option value="Краснодар">
@@ -232,7 +235,10 @@
   </div>
 </div>
 
-  <div style="text-align:center; padding: 28px 16px 12px; color: var(--muted); font-size: 14px; line-height: 1.8;">
+  <div style="text-align:center; padding: 24px 16px 6px; color: var(--muted); font-size: 12px; line-height: 1.7; max-width: 700px; margin: 0 auto; border-top: 1px solid var(--line);">
+    🔒 <b>Конфиденциальность:</b> приложение работает полностью в вашем браузере. Никакие данные — дата и время вопроса, координаты, формулировка вопроса — не передаются на серверы разработчика и не сохраняются нигде, кроме вашего устройства. Координаты запоминаются только локально (в localStorage вашего браузера) для удобства следующего визита и могут быть удалены очисткой кэша браузера.
+  </div>
+  <div style="text-align:center; padding: 10px 16px 12px; color: var(--muted); font-size: 14px; line-height: 1.8;">
     Более подробный анализ ситуации можно получить у астролога —
     <a href="https://goroskop1008.ru/uslugi/#goroskop#!/tproduct/842449103-1498486363994" target="_blank" style="color:var(--accent); text-decoration:none; border-bottom: 1px solid var(--accent);">индивидуальная консультация</a>.<br>
     Также доступен мастер-класс по прашне в записи —
