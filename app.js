@@ -756,11 +756,37 @@ function initUI() {
   const pad = n => String(n).padStart(2, '0');
   $('dt').value = `${now.getFullYear()}-${pad(now.getMonth() + 1)}-${pad(now.getDate())}T${pad(now.getHours())}:${pad(now.getMinutes())}`;
   $('tz').value = -now.getTimezoneOffset() / 60;
-  // сохранённые координаты (только lat/lon, часовой пояс берётся из браузера)
+  // координаты из кэша
   try {
     const saved = JSON.parse(localStorage.getItem('prashna_loc') || 'null');
     if (saved) { $('lat').value = saved.lat; $('lon').value = saved.lon; }
   } catch (e) { }
+  // кнопка геолокации — только по явному нажатию пользователя
+  $('geoBtn').addEventListener('click', () => {
+    if (!navigator.geolocation) { alert('Геолокация не поддерживается вашим браузером'); return; }
+    $('geoBtn').textContent = '⏳ Определяю...';
+    navigator.geolocation.getCurrentPosition(pos => {
+      const lat = pos.coords.latitude, lon = pos.coords.longitude;
+      $('lat').value = lat.toFixed(3);
+      $('lon').value = lon.toFixed(3);
+      // обратное геокодирование через OpenStreetMap Nominatim (любой нас. пункт)
+      fetch(`https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=json&accept-language=ru`, {
+        headers: { 'User-Agent': 'PrashnaDjyotish/1.0' }
+      })
+        .then(r => r.json())
+        .then(d => {
+          const a = d.address || {};
+          const place = a.village || a.hamlet || a.suburb || a.town || a.city ||
+                        a.municipality || a.county || (d.display_name || '').split(',')[0].trim();
+          if (place) $('city').value = place;
+        })
+        .catch(() => {})
+        .finally(() => { $('geoBtn').textContent = '📍 Моё место'; });
+    }, () => {
+      $('geoBtn').textContent = '📍 Моё место';
+      alert('Не удалось определить местоположение. Разрешите доступ к геолокации в настройках браузера.');
+    });
+  });
   $('calc').addEventListener('click', calculate);
   $('printBtn').addEventListener('click', () => window.print());
 }
